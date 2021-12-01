@@ -1,13 +1,15 @@
 package com.example.ddd_example.domain.iRepository;
 
-import com.example.ddd_example.domain.entity.workhistory;
+import com.example.ddd_example.domain.dto.workhistoryDTO;
 import org.springframework.stereotype.Repository;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
+import java.sql.SQLException;
+import java.util.List;
+
 @Repository
+
 public interface iworkhistory {
     public Boolean InsertWorkHistory();
 
-    public List<workhistory> SelectWorkHistory(int user_code, String start_date, String end_date);
+    public List<workhistoryDTO> GetWorkHistoryList(int user_code, String start_date, String end_date) throws SQLException;
 }
