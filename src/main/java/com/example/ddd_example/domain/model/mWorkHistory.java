@@ -1,14 +1,13 @@
 package com.example.ddd_example.domain.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import org.springframework.http.HttpStatus;
+
 
 public class mWorkHistory {
 
-    public static class Add_Request{
-
+    @ApiModel
+    public static class Add_WorkHistory_Request{
         @ApiModelProperty(example = "20210001")
         private String id;
         @ApiModelProperty(example = "박진호")
@@ -30,7 +29,7 @@ public class mWorkHistory {
         @ApiModelProperty(example = "정상근무")
         private String work_type_name;
 
-        public Add_Request(String id, String name, int deparment_code, String deparment_name, String start_time, String end_time, String work_time, String message, int work_type_code, String work_type_name) {
+        public Add_WorkHistory_Request(String id, String name, int deparment_code, String deparment_name, String start_time, String end_time, String work_time, String message, int work_type_code, String work_type_name) {
             this.id = id;
             this.name = name;
             this.deparment_code = deparment_code;
@@ -84,12 +83,13 @@ public class mWorkHistory {
         }
     }
 
-    public static class Get_Request{
+    @ApiModel
+    public static class Get_WorkHistory_Request{
         private String id;
         private String start_time;
         private String end_time;
 
-        public Get_Request(String id, String start_time, String end_time)
+        public Get_WorkHistory_Request(String id, String start_time, String end_time)
         {
             this.id = id;
             this.start_time = start_time;
@@ -110,7 +110,8 @@ public class mWorkHistory {
         }
     }
 
-    public static class Get_Response{
+    @ApiModel
+    public static class Get_WorkHistory_Response{
 
         @ApiModelProperty(example = "20210001")
         private String id;
@@ -133,7 +134,7 @@ public class mWorkHistory {
         @ApiModelProperty(example = "정상근무")
         private String work_type_name;
 
-        public Get_Response(String id, String name, int deparment_code, String deparment_name, String start_time, String end_time, String work_time, String message, int work_type_code, String work_type_name) {
+        public Get_WorkHistory_Response(String id, String name, int deparment_code, String deparment_name, String start_time, String end_time, String work_time, String message, int work_type_code, String work_type_name) {
             this.id = id;
             this.name = name;
             this.deparment_code = deparment_code;

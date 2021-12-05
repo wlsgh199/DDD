@@ -31,7 +31,7 @@ public class Swagger {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.example.ddd_example"))
                 .apis(RequestHandlerSelectors.any())
-                //.paths(PathSelectors.ant("api/v1.0/workhistory"))
+//                .paths(PathSelectors.ant("api/**"))
                 .build()
                 .apiInfo(apiInfo(title, version));
     }

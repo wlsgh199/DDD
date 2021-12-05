@@ -13,14 +13,14 @@ import java.util.List;
 
 public class WorkHistory implements iWorkHistory {
 
-    public List<mWorkHistory.Get_Response> Get(mWorkHistory.Get_Request model) throws SQLException {
+    public List<mWorkHistory.Get_WorkHistory_Response> Get(mWorkHistory.Get_WorkHistory_Request model) throws SQLException {
         String sql = "select * FROM work_history "
                     + "where id = ?"
                     + "  and start_time <= ?"
                     + "  and end_time >= ?";
 
         Connection con = null;
-        ArrayList<mWorkHistory.Get_Response> modellist = new ArrayList<>();
+        ArrayList<mWorkHistory.Get_WorkHistory_Response> modellist = new ArrayList<>();
         try {
             con = DataBase.getInstance().getConnection();
             PreparedStatement st = con.prepareStatement(sql);
@@ -34,7 +34,7 @@ public class WorkHistory implements iWorkHistory {
             while(rs.next())
             {
                 modellist.add(
-                        new mWorkHistory.Get_Response(
+                        new mWorkHistory.Get_WorkHistory_Response(
                                 rs.getString("id"),
                                 rs.getString("name"),
                                 rs.getInt("deparment_code"),
@@ -66,7 +66,7 @@ public class WorkHistory implements iWorkHistory {
         return modellist;
     }
 
-    public String Add(mWorkHistory.Add_Request model) throws SQLException {
+    public String Add(mWorkHistory.Add_WorkHistory_Request model) throws SQLException {
 
         String sql = "insert into work_history (id, name,deparment_code, deparment_name , start_time, end_time, work_time, message, work_type_code, work_type_name) "
                 + "values(?,?,?,?,?,?,?,?,?,?)";
@@ -74,6 +74,7 @@ public class WorkHistory implements iWorkHistory {
         Connection con = null;
         try {
             con = DataBase.getInstance().getConnection();
+
             PreparedStatement st = con.prepareStatement(sql);
             int i = 0;
             st.setString(++i, model.getId());

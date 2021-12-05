@@ -1,21 +1,15 @@
 package com.example.ddd_example.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
-
-import java.util.Date;
 
 public class mAccount {
 
-    @Getter
-    @AllArgsConstructor
-    public static class Add_Request{
+    @ApiModel
+    public static class Add_Account_Request{
         @ApiModelProperty(example = "wlsgh199")
         private  String id;
-        @JsonIgnore
         @ApiModelProperty(example = "SHA-256")
         private String password;
         @ApiModelProperty(example = "박진호")
@@ -25,10 +19,43 @@ public class mAccount {
         @ApiModelProperty(example = "010-7556-4926")
         private String phone_number;
         @ApiModelProperty(example = "2021-12-01")
-        private Date hire_date;
-    }
+        private String hire_date;
 
-    public static class Add_Response{
+        public Add_Account_Request(String id, String password, String name, String email, String phone_number, String hire_date) {
+            this.id = id;
+            this.password = password;
+            this.name = name;
+            this.email = email;
+            this.phone_number = phone_number;
+            this.hire_date = hire_date;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getPhone_number() {
+            return phone_number;
+        }
+
+        public String getHire_date() {
+            return hire_date;
+        }
+    }
+    @ApiModel
+    public static class Add_Account_Response{
 
         @ApiModelProperty(example = "status")
         private HttpStatus status;
@@ -36,23 +63,29 @@ public class mAccount {
         @ApiModelProperty(example = "Account Add OK")
         private String message;
 
-        public Add_Response(HttpStatus status, String message) {
+        public Add_Account_Response(HttpStatus status, String message) {
             this.status = status;
             this.message = message;
         }
     }
-
-    public static class Get_Request{
+    @ApiModel
+    public static class Get_Account_Request{
         @ApiModelProperty(example = "wlsgh199")
         private  String id;
-    }
 
-    public static class Get_Response
+        public Get_Account_Request(String id) {
+            this.id = id;
+        }
+
+        public String getId() {
+            return id;
+        }
+    }
+    @ApiModel
+    public static class Get_Account_Response
     {
         @ApiModelProperty(example = "wlsgh199")
         private  String id;
-        @ApiModelProperty(example = "SHA-256")
-        private String password;
         @ApiModelProperty(example = "박진호")
         private String name;
         @ApiModelProperty(example = "wlsgh950221@gmail.com")
@@ -60,15 +93,34 @@ public class mAccount {
         @ApiModelProperty(example = "010-7556-4926")
         private String phone_number;
         @ApiModelProperty(example = "2021-12-01")
-        private Date hire_date;
+        private String hire_date;
 
-        public Get_Response(String id, String password, String name, String email, String phone_number, Date hire_date) {
+        public Get_Account_Response(String id, String name, String email, String phone_number, String hire_date) {
             this.id = id;
-            this.password = password;
             this.name = name;
             this.email = email;
             this.phone_number = phone_number;
             this.hire_date = hire_date;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getPhone_number() {
+            return phone_number;
+        }
+
+        public String getHire_date() {
+            return hire_date;
         }
     }
 
