@@ -6,8 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class mWorkHistory {
 
-    @ApiModel
-    public static class Add_WorkHistory_Request{
+    public static class WorkHistory_Add_Request{
         @ApiModelProperty(example = "20210001")
         private String id;
         @ApiModelProperty(example = "박진호")
@@ -29,7 +28,7 @@ public class mWorkHistory {
         @ApiModelProperty(example = "정상근무")
         private String work_type_name;
 
-        public Add_WorkHistory_Request(String id, String name, int deparment_code, String deparment_name, String start_time, String end_time, String work_time, String message, int work_type_code, String work_type_name) {
+        public WorkHistory_Add_Request(String id, String name, int deparment_code, String deparment_name, String start_time, String end_time, String work_time, String message, int work_type_code, String work_type_name) {
             this.id = id;
             this.name = name;
             this.deparment_code = deparment_code;
@@ -83,13 +82,12 @@ public class mWorkHistory {
         }
     }
 
-    @ApiModel
-    public static class Get_WorkHistory_Request{
+    public static class WorkHistory_Get_Request{
         private String id;
         private String start_time;
         private String end_time;
 
-        public Get_WorkHistory_Request(String id, String start_time, String end_time)
+        public WorkHistory_Get_Request(String id, String start_time, String end_time)
         {
             this.id = id;
             this.start_time = start_time;
@@ -110,8 +108,7 @@ public class mWorkHistory {
         }
     }
 
-    @ApiModel
-    public static class Get_WorkHistory_Response{
+    public static class WorkHistory_Get_Response{
 
         @ApiModelProperty(example = "20210001")
         private String id;
@@ -134,7 +131,7 @@ public class mWorkHistory {
         @ApiModelProperty(example = "정상근무")
         private String work_type_name;
 
-        public Get_WorkHistory_Response(String id, String name, int deparment_code, String deparment_name, String start_time, String end_time, String work_time, String message, int work_type_code, String work_type_name) {
+        public WorkHistory_Get_Response(String id, String name, int deparment_code, String deparment_name, String start_time, String end_time, String work_time, String message, int work_type_code, String work_type_name) {
             this.id = id;
             this.name = name;
             this.deparment_code = deparment_code;
@@ -187,15 +184,4 @@ public class mWorkHistory {
             return work_type_name;
         }
     }
-
-    public static class Update{
-
-    }
-
-    public static class Delete{
-
-    }
-
-
-
 }
