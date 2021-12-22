@@ -22,13 +22,15 @@ public class Account implements iAccount {
 
         Connection con = null;
         mAccount.Account_Get_Response resultModel = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
         try {
             con = DataBase.getInstance().getConnection();
-            PreparedStatement st = con.prepareStatement(sql);
+            st = con.prepareStatement(sql);
             int i = 0;
             st.setString(++i, model.getId());
 
-            ResultSet rs = st.executeQuery();
+            rs = st.executeQuery();
 
             while(rs.next())
             {
@@ -47,8 +49,12 @@ public class Account implements iAccount {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+
             if (con != null) {
                 try {
+                    rs.close();
+                    assert st != null;
+                    st.close();
                     con.close();
                 } catch (SQLException e) {
                     // 컨넥션을 닫을때 생기는 문제는 무시한다
@@ -65,11 +71,13 @@ public class Account implements iAccount {
 
         Connection con = null;
         ArrayList<mAccount.Account_Get_Response> resultmAccountList = new ArrayList<>();
+        PreparedStatement st = null;
+        ResultSet rs = null;
         try {
             con = DataBase.getInstance().getConnection();
-            PreparedStatement st = con.prepareStatement(sql);
+             st = con.prepareStatement(sql);
 
-            ResultSet rs = st.executeQuery();
+             rs = st.executeQuery();
 
             while (rs.next()) {
                 resultmAccountList.add(
@@ -82,15 +90,18 @@ public class Account implements iAccount {
                 );
             }
 
-            rs.close();
-            st.close();
+
         } catch (SQLException e) {
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+
             if (con != null) {
                 try {
+                    rs.close();
+                    assert st != null;
+                    st.close();
                     con.close();
                 } catch (SQLException e) {
                     // 컨넥션을 닫을때 생기는 문제는 무시한다
@@ -104,10 +115,12 @@ public class Account implements iAccount {
                 + "values(?,?,?,?,?,?)";
 
         Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
         try {
             con = DataBase.getInstance().getConnection();
 
-            PreparedStatement st = con.prepareStatement(sql);
+            st = con.prepareStatement(sql);
             int i = 0;
             st.setString(++i, model.getId());
             st.setString(++i, model.getPassword());
@@ -117,14 +130,17 @@ public class Account implements iAccount {
             st.setString(++i, model.getHire_date());
 
             st.executeUpdate();
-            st.close();
+
         } catch (SQLException e) {
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+
             if (con != null) {
                 try {
+                    assert st != null;
+                    st.close();
                     con.close();
                 } catch (SQLException e) {
                     // 컨넥션을 닫을때 생기는 문제는 무시한다
@@ -138,15 +154,15 @@ public class Account implements iAccount {
         String sql = "DELETE FROM account WHERE id =?";
 
         Connection con = null;
+        PreparedStatement st = null;
         try {
             con = DataBase.getInstance().getConnection();
 
-            PreparedStatement st = con.prepareStatement(sql);
+            st = con.prepareStatement(sql);
             int i = 0;
             st.setString(++i, model.getId());
 
             st.executeUpdate();
-            st.close();
         } catch (SQLException e) {
             throw e;
         } catch (Exception e) {
@@ -154,6 +170,8 @@ public class Account implements iAccount {
         } finally {
             if (con != null) {
                 try {
+                    assert st != null;
+                    st.close();
                     con.close();
                 } catch (SQLException e) {
                     // 컨넥션을 닫을때 생기는 문제는 무시한다
@@ -168,10 +186,12 @@ public class Account implements iAccount {
                 + "where id = ? ";
 
         Connection con = null;
+        PreparedStatement st = null;
+
         try {
             con = DataBase.getInstance().getConnection();
 
-            PreparedStatement st = con.prepareStatement(sql);
+             st = con.prepareStatement(sql);
             int i = 0;
             st.setString(++i, model.getPassword());
             st.setString(++i, model.getName() );
@@ -180,7 +200,7 @@ public class Account implements iAccount {
             st.setString(++i, model.getId());
 
             st.executeUpdate();
-            st.close();
+
         } catch (SQLException e) {
             throw e;
         } catch (Exception e) {
@@ -188,6 +208,8 @@ public class Account implements iAccount {
         } finally {
             if (con != null) {
                 try {
+                    assert st != null;
+                    st.close();
                     con.close();
                 } catch (SQLException e) {
                     // 컨넥션을 닫을때 생기는 문제는 무시한다

@@ -21,15 +21,18 @@ public class WorkHistory implements iWorkHistory {
 
         Connection con = null;
         ArrayList<mWorkHistory.WorkHistory_Get_Response> modellist = new ArrayList<>();
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
         try {
             con = DataBase.getInstance().getConnection();
-            PreparedStatement st = con.prepareStatement(sql);
+             st = con.prepareStatement(sql);
             int i = 0;
             st.setString(++i, model.getId());
             st.setString(++i, model.getStart_Time());
             st.setString(++i, model.getEnd_Time());
 
-            ResultSet rs = st.executeQuery();
+             rs = st.executeQuery();
 
             while(rs.next())
             {
@@ -48,15 +51,20 @@ public class WorkHistory implements iWorkHistory {
                 );
             }
 
-            rs.close();
-            st.close();
+
         } catch (SQLException e) {
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+
+
+
             if (con != null) {
                 try {
+                    assert rs != null;
+                    rs.close();
+                    st.close();
                     con.close();
                 } catch (SQLException e) {
                     // 컨넥션을 닫을때 생기는 문제는 무시한다
@@ -70,12 +78,14 @@ public class WorkHistory implements iWorkHistory {
 
         String sql = "insert into work_history (id, name,deparment_code, deparment_name , start_time, end_time, work_time, message, work_type_code, work_type_name) "
                 + "values(?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement st = null;
 
         Connection con = null;
         try {
             con = DataBase.getInstance().getConnection();
 
-            PreparedStatement st = con.prepareStatement(sql);
+            st = con.prepareStatement(sql);
+
             int i = 0;
             st.setString(++i, model.getId());
             st.setString(++i, model.getName());
@@ -89,15 +99,20 @@ public class WorkHistory implements iWorkHistory {
             st.setString(++i, model.getWork_type_name());
 
             st.executeUpdate();
-            st.close();
+
         } catch (SQLException e) {
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+
             if (con != null) {
                 try {
+                    assert st != null;
+                    st.close();
+
                     con.close();
+
                 } catch (SQLException e) {
                     // 컨넥션을 닫을때 생기는 문제는 무시한다
                 }
