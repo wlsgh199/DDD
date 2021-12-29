@@ -11,4 +11,10 @@ WorkHistory :  GET, POST
 
 간단하게 예제로 작성하였습니다.
 
-계속해서 테스트 코드 및 리팩토리 예정입니다.
+
+현재 AWS EC2에 올라가있습니다.
+
+# ubuntu <-> nginx  <-> ddd_example api  
+
+스웨거를 통해 확인할수 있습니다.
+http://3.36.176.139/swagger-ui.html
